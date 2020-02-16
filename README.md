@@ -11,14 +11,8 @@ For the German Hip Hop I found a playlist by Spotify called "Deutschrap: Die Kla
 
 These are my tables for Reggeaton:
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-
-meanvalence | meanenergy | meanmode | meaninstrumentalness | meanliveness | meanloudness | meanspeechiness | meantempo | meandanceability | meanacousticness
------|---|---|---|---|---|---|---|---|
-   0.717  |    0.771   |   0.48     |       0.0108     |    0.180   |     -6.04       |   0.0992   |   109.     |       0.783 | 0.161
+meanvalence  meanenergy meanmode meaninstrumentalness meanliveness meanloudness meanspeechiness meantempo meandanceability 
+   0.717     0.771      0.48           0.0108          0.180        -6.04          0.0992        109.           0.783 
    
   sdvalence  sdenergy   sdmode    sdinstrumentalness  sdliveness    sdloudness  sdspeechiness    sdtempo sddanceability
    0.172     0.0909     0.502           0.0817           0.141         1.63         0.0613        30.7         0.0801
