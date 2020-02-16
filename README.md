@@ -16,10 +16,28 @@ These are my tables for Reggeaton:
   sdvalence  sdenergy   sdmode    sdinstrumentalness  sdliveness    sdloudness  sdspeechiness    sdtempo sddanceability
    0.172     0.0909     0.502           0.0817           0.141         1.63         0.0613        30.7         0.0801
    
+ meanacousticness
+     0.161
+     
+ sdacousticness
+     0.127    
+     
  These are my tables for German HipHop: 
  
  meanvalence meanenergy meanmode meaninstrumentalness meanliveness meanloudness meanspeechiness meantempo meandanceability
-  0.573      0.666     0.34              0.00804        0.173        -6.81           0.209        111.            0.737
+  0.573      0.666       0.34           0.00804        0.173        -6.81           0.209        111.            0.737
   
  sdvalence   sdenergy   sdmode    sdinstrumentalness   sdliveness   sdloudness   sdspeechiness   sdtempo   sddanceability
    0.213      0.119     0.476             0.0417        0.102         1.95          0.132         30.0           0.103
+ 
+ meanacousticness
+     0.187
+     
+ sdacousticness
+     0.163
+   
+ As I just created these new playlists the results I got from those tables are different from the results I had in my first analyses. 
+The differences I can find from these tables are a little less satisfying than the results I had at first therefore, I will try to enrich my data with more visualisations: 
+
+
+German: 
