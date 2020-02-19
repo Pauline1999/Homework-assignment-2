@@ -57,3 +57,5 @@ The plots showed a similar shape of distribution but the Reggeaton songs  were n
 
 Through my new analyses I thought more about why I myself like Reggeaton and what I perceive to be specific features of it. This gave me ideas for visualisations and I think I will be able to find interesting results when comparing Reggeaton to German Hip Hop. 
 
+This is my first visualisation: 
+![Plot1](First plot.png)
