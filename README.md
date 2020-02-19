@@ -1,5 +1,6 @@
-# Homework-assignment-2
-Computational musicology 
+# Computational Musicology Portfolio 
+
+
 
 Since last week I had two inital ideas, I now decided to use this research question: 
 How does the famous music style "Reggeaton" differ from German hip hop? 
