@@ -175,6 +175,6 @@ Row
     
 ### Conclusion
 
-Until now, the visualisations I created showed quiet interesting results and I want to look further at audio features like danceability, loudness and tempo as a perceive those as very characteristic of both music styles. More importantly want to look more deeper and create more sophisticated visualisations.
+Until now, the visualisations I created showed very interesting results and I want to look further at audio features like danceability, loudness and tempo as a perceive those as very characteristic of both music styles. More importantly want to look more deeper and create more sophisticated visualisations.
 
-What I can conclude from my visualisations until now, is that there might be significant differences between the two music styles, for instance in rheir energy and valence level that might give a reason for why Reggeaton is also listened to be people who do not even speak Spanish. It might be it's positive, danceable and energetic sound that makes people like Reggeaton. 
+What I can conclude from my visualisations until now, is that there might be significant differences between the two music styles, for instance in their level of energy and valence which might be a reason for why Reggeaton is also listened to be people who do not even speak Spanish. It might be it's positive, danceable and energetic sound that makes people like Reggeaton.
