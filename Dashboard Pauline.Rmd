@@ -1,0 +1,43 @@
+---
+title: "Dashboard Pauline"
+author: "Pauline Sayn-Wittgenstein" 
+date: "February-March 2020"
+
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+source('spotify.R')
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Introduction 
+
+```{r}
+This is my introduction page
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Visualisation 1
+
+```{r}
+![Visualisation 1](First plot.png)
+```
+
+### Chart C
+
+```{r}
+
+```
+

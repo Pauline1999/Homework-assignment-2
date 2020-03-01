@@ -6,7 +6,7 @@ date: "February-March 2020"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
-    vertical_layout: fill
+    vertical_layout: scroll
     theme: flatly 
 ---
 
@@ -19,7 +19,125 @@ library(compmus)
 source('spotify.R')
 ```
 
-Page 1
+
+The Role of Timbre 
+=====================================  
+
+Row {.tabset .tabset-fade}
+-----------------------------------------------------------------------
+
+### Cepstogram - Timbre: German Hip Hop outlier - Wenn der Vorhang fällt (feat.Wasi) by Freundeskreis
+
+```{r}
+WennderV <- 
+     get_tidy_audio_analysis('5GEPmgYRf9e1hcnsbfG9Rz') %>% 
+     compmus_align(bars, segments) %>% 
+     select(bars) %>% unnest(bars) %>% 
+     mutate(
+         pitches = 
+             map(segments, 
+                 compmus_summarise, pitches, 
+                 method = 'rms', norm = 'euclidean')) %>% 
+     mutate(
+         timbre = 
+             map(segments, 
+                 compmus_summarise, timbre, 
+                 method = 'rms', norm = 'euclidean'))
+WennderV %>% 
+     compmus_gather_timbre %>% 
+     ggplot(
+         aes(
+             x = start + duration / 2, 
+             width = duration, 
+             y = basis, 
+             fill = value)) + 
+     geom_tile() +
+     labs(x = 'Time (s)', y = NULL, fill = 'Magnitude') +
+     scale_fill_viridis_c(option = 'E') +
+     theme_classic()
+```
+
+### Cepstogram - Timbre: Reggeaton outlier - No Le Temas a el Beat by Trebol Clan and Hector & Tito 
+
+```{r}
+Noletemas <- 
+     get_tidy_audio_analysis('3rMyZL6J4t2EeZKMTD1UaI') %>% 
+     compmus_align(bars, segments) %>% 
+     select(bars) %>% unnest(bars) %>% 
+     mutate(
+         pitches = 
+             map(segments, 
+                 compmus_summarise, pitches, 
+                 method = 'rms', norm = 'euclidean')) %>% 
+     mutate(
+         timbre = 
+             map(segments, 
+                 compmus_summarise, timbre, 
+                 method = 'rms', norm = 'euclidean'))
+Noletemas %>% 
+    compmus_gather_timbre %>% 
+    ggplot(
+        aes(
+            x = start + duration / 2, 
+            width = duration, 
+            y = basis, 
+            fill = value)) + 
+    geom_tile() +
+    labs(x = 'Time (s)', y = NULL, fill = 'Magnitude') +
+    scale_fill_viridis_c(option = 'E') +
+    theme_classic()
+```
+
+Row {.tabset .tabset-fade}
+-----------------------------------------------------------------------
+
+### Self-Similarity Matrix - Wenn der Vorhang fällt (feat.Wasi) by Freundeskreis
+
+```{r}
+WennderV %>% 
+    compmus_self_similarity(timbre, 'euclidean') %>% 
+    ggplot(
+        aes(
+            x = xstart + xduration / 2, 
+            width = xduration,
+            y = ystart + yduration / 2,
+            height = yduration,
+            fill = d)) + 
+    geom_tile() +
+    coord_fixed() +
+    scale_fill_viridis_c(option = 'E', guide = 'none') +
+    theme_classic() +
+    labs(x = '', y = '')
+```
+
+### Self-Similarity Matrix - No Le Temas a el Beat by Trebol Clan and Hector & Tito 
+
+```{r}
+Noletemas %>% 
+    compmus_self_similarity(timbre, 'manhattan') %>% 
+    ggplot(
+        aes(
+            x = xstart + xduration / 2, 
+            width = xduration,
+            y = ystart + yduration / 2,
+            height = yduration,
+            fill = d)) + 
+    geom_tile() +
+    coord_fixed() +
+    scale_fill_viridis_c(option = 'E', guide = 'none') +
+    theme_classic() +
+    labs(x = '', y = '')
+```
+
+Row 
+-----------------------------------------------------------------------
+For the cepstograms and the self-similarity matrices I chose the two outliers of the two playlists.
+
+When comparing the cepstograms regarding timbre we can see that the magnitude for the Reggeaton song is much less distributed than the magnitude for the German song, although the German song highlights c03. As these two are outliers for the actual genres we can again see that variety in tone and in timbre, as it is not the case for the Reggeaton outlier, might indeed a characteristic for Reggeaton. To be sure of that, I want to make further investigations on that and possibly also create cepstograms for typical Reggeaton songs. 
+
+The self-similarity matrices that also portray the two outliers are very diverse as well. Although these two are outliers for each genre we can see that there is a clear difference between the two. To find a more clear and exact interpretation for these, I would like to create more self-similarity matrices with different songs from each playlist. 
+
+Popularity of Reggeaton  
 ===================================== 
 
 Column {data-width=500}
@@ -41,7 +159,7 @@ For the German Hip Hop I found a playlist by Spotify called "Deutschrap: Die Kla
 
 When looking at the means and standard deviations of both these playlists I could find small differences between the danceability, loudness and speechiness. 
 
-The small differences that I could find from my first anaylses also reflect my expectations resulting from my own muscial experiences with both musical styles. I myself experience Reggeaton as very moving, danceable and often positive while German Hip Hop is often more negative and aggresive which might result in its loudness. Also, it seems to me that in the German songs I perceive much more text that is sung in a very fast way. Additionally, I perceive a very characteristic beat in most Reggeaton songs.
+The small differences that I could find from my first anaylses also reflect my expectations resulting from my own musicial experiences with both musical styles. I myself experience Reggeaton as very moving, danceable and often positive while German Hip Hop is often more negative and aggresive which might result in its loudness. Also, it seems to me that in the German songs I perceive much more text that is sung in a very fast way. Additionally, I perceive a very characteristic beat in most Reggeaton songs.
 But of course there are also variations within each musical style and thats what I also saw when doing my first anaylses.
 
 
@@ -70,18 +188,17 @@ ggplotly(genres)
 
 ### Interpretation 
 
-Here is the first visualisation I created. It compares the valence on the x-axis to the energy of the song on the y-axis.From the first impression you do not really see a big difference between the German Hip-Hop and the Reggeaton songs. But looking closer, you can see that there is more variance between the German songs than within the Reggeaton songs. As I described in my own expectations, Reggeaton songs sound very positive and as the visualisation shows, German songs vary regarding valence. What we can also see is that both genres are quite energetic although I think this energy might be different for both of them. The energy in German songs seems more aggresive to me than the energy in the Reggeaton songs. This might also be visualised in the graph, as the German songs are also destributed more central than the Reggeaton songs. 
-
+Here is the first visualisation I created for my research. It compares the valence on the x-axis to the energy of the song on the y-axis.From the first impression you might not really see a big difference between the German and the Reggeaton songs. But looking closer, you can see that there is more variance within the German songs than within the Reggeaton songs. As I described in my own expectations, Reggeaton songs sound very positive and as the visualisation shows, German songs vary regarding valence while the Reggeaton songs almost all score very high on it. What we can also see is that both genres are quite energetic although, I think, this energy might be different for both of them. The energy in German songs seems more aggresive to me than the energy in the Reggeaton songs. This might also be visualised in the graph, as the German songs are also destributed more central than the Reggeaton songs.
+Overall from this result, I would describe Reggeaton songs as more positive and more energetic than German Hip Hop songs. This positivity and energy might also be one of the reasons why Reggeaton is so popular among many people all aroung the world. Its positive and energetic vibe spreads a good mood and the language of the songs do not seem to matter in this regard. German Hip Hop songs on the otherhand might also be very energetic but in different way. Looking at the speechiness in the songs, which i perceive to be very high in German songs could be an interesting factor. 
 
 ```{r}
 
 
 ```
-
-Page 2
+Variation - The Key to Success? 
 =====================================     
 
-Column
+Row {.tabset .tabset-fade}
 -----------------------------------------------------------------------
 
 ### Chromagram - German song "Mios mit Bars" by Luciano
@@ -125,56 +242,21 @@ Enlacama %>%  mutate(pitches = map(pitches, compmus_normalise, 'euclidean')) %>%
 
 ```
 
-Column
+Row {.tabset .tabset-fade}
 -----------------------------------------------------------------------
-### Dynamic Time Warping with Euclidean and method Cosine
-
-```{r}
-compmus_long_distance(
-      Enlacama %>% mutate(pitches = map(pitches, compmus_normalise, 'euclidean')),
-      Mios %>% mutate(pitches = map(pitches, compmus_normalise, 'euclidean')),
-      feature = pitches,
-      method = 'cosine') %>% 
-      ggplot(
-          aes(
-              x = xstart + xduration / 2, 
-              width = xduration,
-              y = ystart + yduration / 2,
-              height = yduration,
-              fill = d)) + 
-      geom_tile() +
-      scale_fill_continuous(type = 'viridis', guide = 'none') +
-      labs(x = 'En La Cama', y = 'Mios mit Bars') +
-     theme_minimal()
-
-```
-
-### Dynamic Time Warping with Chebyshev and method euclidean
-
-```{r}
-compmus_long_distance(
-    Enlacama %>% mutate(pitches = map(pitches, compmus_normalise, 'chebyshev')),Mios %>% mutate(pitches = map(pitches, compmus_normalise, 'chebyshev')),
-    feature = pitches,
-     method = 'euclidean') %>% 
-     ggplot(
-         aes(
-             x = xstart + xduration / 2, 
-             width = xduration,
-             y = ystart + yduration / 2,
-             height = yduration,
-             fill = d)) + 
-     geom_tile() +
-     scale_fill_continuous(type = 'viridis', guide = 'none') +
-     labs(x = 'En La Cama', y = 'Mios mit Bars') +
-     theme_minimal()
-```
+I created these two Chromagrams choosing the first song on each playlist. We can see that the first song "Mios mit Bars" by Luciano from the German Hip Hop Playlist is mostly played in A and not that much in G#, G and F#. Additionally, we can see that in the beginning and the end of the measured time of the Chromagram for a lot of notes the magnitude is very low. When looking at the second Chromagram visualising the song "En la Cama" by Nicky Jam featuring Daddy Yankee we can see that the magnitude is higher for almost all notes. Also, the ending and beginning measured for this song's chromgram do not exhibit such striking lower magnitude as the German song. 
+From these visualisations we might therefore again conclude that this variety of notes and therefore sounds in the Reggeaton song might lead to more popularity among listeners from all around the world than the more monotony of the German song.  
 
 
-Row 
--------------------------------------
+First conclusions 
+=====================================  
     
 ### Conclusion
 
-Until now, the visualisations I created showed very interesting results and I want to look further at audio features like danceability, loudness and tempo as a perceive those as very characteristic of both music styles. More importantly want to look more deeper and create more sophisticated visualisations.
+What I can conclude from my visualisations until now, is that there might be significant differences between the two music styles, for instance in their level of energy and valence which might be a reason for why Reggeaton is also listened to by people who do not even speak Spanish. It might be the positive, danceable and energetic sound that makes people from all around the world enjoy listening Reggeaton.
 
-What I can conclude from my visualisations until now, is that there might be significant differences between the two music styles, for instance in their level of energy and valence which might be a reason for why Reggeaton is also listened to be people who do not even speak Spanish. It might be it's positive, danceable and energetic sound that makes people like Reggeaton.
+I also can conlcude now that from my visualisations I can perceive more variability in tone and timbre for Reggeaton songs than for German Hip Hop songs which might be one other reason for Reggeaton's popularity. 
+
+The visualisations I created showed very interesting results and I want to look further at audio features like danceability, loudness, tempo and speechiness as a perceive those as very characteristic of both music styles. More importantly want to look more deeply into my results and create more sophisticated visualisations.
+
+Additionally, I still want improve the layout of my portfolio and also compare the two genres looking at specific songs. 

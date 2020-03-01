@@ -1,4 +1,25 @@
-# Computational Musicology Portfolio 
+Computational Musicology Portfolio 
+
+---
+title: "Dashboard Pauline"
+author: "Pauline Sayn-Wittgenstein" 
+date: "February-March 2020"
+
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: flatly 
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(spotifyr)
+library(compmus)
+source('spotify.R')
+```
 
 Page 1
 ===================================== 
@@ -159,9 +180,3 @@ Row
 Until now, the visualisations I created showed very interesting results and I want to look further at audio features like danceability, loudness and tempo as a perceive those as very characteristic of both music styles. More importantly want to look more deeper and create more sophisticated visualisations.
 
 What I can conclude from my visualisations until now, is that there might be significant differences between the two music styles, for instance in their level of energy and valence which might be a reason for why Reggeaton is also listened to be people who do not even speak Spanish. It might be it's positive, danceable and energetic sound that makes people like Reggeaton.
-
-![Mios mit Bros by Luciano - Chromagram](week8.1.png)
-
-![En la Cama by Nicky Jam feat. Daddy Yankee](week8.2.png)
-
-![En la Cama & Mios mit Bros - Dynamic Time Warping](week8.3.)
