@@ -272,7 +272,7 @@ For the German Hip Hop I found a playlist by Spotify called "Deutschrap: Die Kla
 When looking at the means and standard deviations of both these playlists I could find small differences between the danceability, loudness and speechiness. 
 
 The small differences that I could find from my first anaylses also reflect my expectations resulting from my own musicial experiences with both musical styles. I myself experience Reggeaton as very moving, danceable and often positive while German Hip Hop is often more negative and aggresive which might result in its loudness. Also, it seems to me that in the German songs I perceive much more text that is sung in a very fast way. Additionally, I perceive a very characteristic beat in most Reggeaton songs.
-But of course there are also variations within each musical style and thats what I also saw when doing my first anaylses.
+But of course there are also variations within each musical style and thats what I also saw when doing my first anaylsis.
 
 ### What role does valence play? 
 
